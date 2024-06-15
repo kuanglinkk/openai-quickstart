@@ -6,6 +6,9 @@ GLMModel:
   model_url: "your_chatglm_model_url"
   timeout: 300
 
+model_name: "glm-4"
+api_key: "your_openai_api_key"
+
 common:
   book: "tests/test.pdf"
   file_format: "markdown"

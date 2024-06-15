@@ -14,10 +14,15 @@ if __name__ == "__main__":
 
     config = config_loader.load_config()
 
-    model_name = args.openai_model if args.openai_model else config['OpenAIModel']['model']
-    api_key = args.openai_api_key if args.openai_api_key else config['OpenAIModel']['api_key']
-    model = OpenAIModel(model=model_name, api_key=api_key)
-
+    model_type = args.model_type
+    if model_type == "OpenAIModel":
+        model_name = args.openai_model if args.openai_model else config['OpenAIModel']['model']
+        api_key = args.openai_api_key if args.openai_api_key else config['OpenAIModel']['api_key']
+        model = OpenAIModel(model=model_name, api_key=api_key)
+    else:
+        model_name = args.model_name if args.model_name else config['model_name']
+        api_key = args.api_key if args.api_key else config['api_key']
+        model = GLMModel(model=model_name, api_key=api_key)
 
     pdf_file_path = args.book if args.book else config['common']['book']
     file_format = args.file_format if args.file_format else config['common']['file_format']
